@@ -1,5 +1,5 @@
 .cproject
 .project
-test/report
-lib/bin/*
-lib/ob/*
+ipsiTest/report
+ipsi/bin/*
+ipsi/obj/*
