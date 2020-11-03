@@ -287,6 +287,41 @@ int ipsiMethodCall(char *appName,char* methodName)
  **/
 int ipsiListen(){
 
+	IPSI_LOG("[IPSI] Listening for method calls\n");
+	while (!ipsiListenFlag) {
+		// non blocking read of the next available message
+		dbus_connection_read_write(conn, 0);
+		msg = dbus_connection_pop_message(conn);
+
+		// loop again if we haven't got a message
+		if (NULL == msg) {
+			continue;
+		}
+
+		for(int i =0 ; i<indexCounter ; i++)
+		{
+			if (dbus_message_is_method_call(msg, iface,methodNameArry[i] ))
+			{
+				IPSI_LOG("[IPSI]Listen methodName:%s\n",methodNameArry[i]);
+				funPtrArry[i]();
+				break;
+			}
+		}
+		// free the message*/
+		dbus_message_unref(msg);
+	}
+
+	if (STOP_IPSI_LISTEN == ipsiListenFlag){
+
+		cleanupFlag = IPSI_CLEAN_UP_SET;
+		IPSI_LOG("[IPSI]Listen was STOPPED as per request from ipsiClose()\n");
+	}
+	else
+	{
+		IPSI_LOG("[IPSI]Listen was STOPPED due to internal Fault\n");
+		return FAILURE;
+	}
+
 	return SUCCESS;
 }
 
@@ -295,6 +330,15 @@ int ipsiListen(){
  **/
 void ipsiClose(){
 
+	if(IPSI_SERVER == applicationRole){
+		IPSI_LOG ("[IPSI] ****Shutting Down***\n");
+		ipsiListenFlag = STOP_IPSI_LISTEN;
+		while (IPSI_CLEAN_UP_SET != cleanupFlag);
+		//dbus_connection_close(conn); //TODO , do not attempt to close shared connection. it is safe to exit in Dbus.
+		IPSI_LOG ("[IPSI] ****!EXITED!***\n");
+	}
+	else
+		IPSI_LOG ("[IPSI] You are not a Server, Invalid Request\n");
 
 }
 
