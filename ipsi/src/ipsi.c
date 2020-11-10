@@ -19,11 +19,11 @@
  * int ipsiListen();
  * void ipsiClose();
  *
- * Design and Developed by:
+ * Designed and Developed by:
  * Partho Ghosal -
  * Ashwini Upasani -
  * Deepti -
- * Rajdeep -
+ * Rajdeep Virdi -
  */
 
 #define SUCCESS 1					/** IPSI library indicating Success to perform certain task */
@@ -85,7 +85,7 @@ static int applicationRole= IPSI_NONE;
 /*********************************/
 
 /**
- * This is an utility function, use to check if the application
+ * This is an utility function, used to check if the application
  * requesting is a "Server" or not
  *
  * @param[in] connectionType : should be "Server"
@@ -99,7 +99,7 @@ static int isServer(char *connectionType){
 }
 
 /**
- * This is an utility function, use to check if the application
+ * This is an utility function, used to check if the application
  * requesting is a "Caller" or not.
  *
  * @param[in] connectionType : should be "Caller"
@@ -113,7 +113,7 @@ static int isCaller(char *connectionType){
 }
 
 /**
- * \brief This is an External API use to register callback functions for the services offered by the Service Provider.
+ * \brief This is an External API used to register callback functions for the services offered by the Service Provider.
  *
  * Service Provider should register its callback functions with a unique name. This unique service name can be used
  * by the Service requester to invoke service request by using ipsiMethodCall().
@@ -133,13 +133,13 @@ int ipsiRegisterFunction(void (*funPtr)(), char *methodName){
 
 
 /**
- * This is an utility function, use to build Connection name for
- * low-level communication protocol.[Dbus]
+ * This is an utility function, used to build Connection name for
+ * low-level communication protocol [Dbus].
  *
  * @param[in] appName : Application unique name.
  *
  * @return SUCCESS: Connection name was built as per DBUS specification .
- * @return FAILURE: Cannot able to built the connection name as per DBUS specification.
+ * @return FAILURE: not able to build the connection name as per DBUS specification.
  */
 static int buildConnectionName(char *appName)
 {
@@ -158,14 +158,14 @@ static int buildConnectionName(char *appName)
 /**
  * This is an utility function, that helps in binding
  * connection name with connectionType that severs as an input to
- * low-level communication protocol.[Dbus]
+ * low-level communication protocol [Dbus].
  *
  * @param[in] appName:  Unique Name of the application
  *
- * @param[in] connectionType: Specify the role of the application either "Caller" or "Server"
+ * @param[in] connectionType: Specify the role of the application as either "Caller" or "Server"
  *
  * @return SUCCESS: Binding connection name with connection type was successful as per DBUS specification .
- * @return FAILURE: Cannot able to bind connection name with connection type as per DBUS specification
+ * @return FAILURE: Cannot be able to bind connection name with connection type as per DBUS specification
  */
 static int initConnectionName(char *appName,char *connectionType){
 
@@ -173,7 +173,7 @@ static int initConnectionName(char *appName,char *connectionType){
 }
 
 /**
- * \brief This is an External API use by the application to register with IPSI library and specify its
+ * \brief This is an External API used by the application to register with IPSI library and specify its
  * role as "Caller"/"Server" along with a unique name
  *
  * Service requester Application should register itself as "Caller" and with a unique name, this will allow the
@@ -185,10 +185,38 @@ static int initConnectionName(char *appName,char *connectionType){
  *
  * @param[in] connectionType: Specify the role of the application either "Caller" or "Server"
  *
- * @return SUCCESS: The application as successfully registered itself with IPSI library
+ * @return SUCCESS: The application successfully registered itself with IPSI library
  * @return FAILURE: The application was unable to register with IPSI library , an appropriate error message will be shown on console
  **/
 int ipsiConnectionType(char *appName, char *connectionType){
+
+	if(!(initConnectionName(appName,connectionType))){
+		IPSI_LOG("[IPSI] Invalid Connection Type, Exiting...\n");
+		return FAILURE;
+	}
+
+	conn = dbus_bus_get(DBUS_BUS_SESSION, &err);
+	if (dbus_error_is_set(&err)) {
+		IPSI_LOG("[IPSI] Connection Error (%s)\n", err.message);
+		dbus_error_free(&err);
+		return FAILURE;
+	}
+	if (NULL == conn) {
+		IPSI_LOG("[IPSI] Connection Null\n");
+		return FAILURE;
+	}
+
+	ret = dbus_bus_request_name(conn, connectionName, DBUS_NAME_FLAG_REPLACE_EXISTING , &err);
+	if (dbus_error_is_set(&err)) {
+		IPSI_LOG("[IPSI] Name Error (%s)\n", err.message);
+		dbus_error_free(&err);
+		return FAILURE;
+	}
+
+	if (DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER != ret) {
+		IPSI_LOG("[IPSI] Not Primary Owner (%d)\n", ret);
+		return FAILURE;
+	}
 
 	return SUCCESS;
 
@@ -272,7 +300,7 @@ int ipsiMethodCall(char *appName,char* methodName)
 /**
  * \brief This is an External API that will allow Service Provider to listen for service request
  *
- * Service Provider will listen for service request that are requested by the Service Requester Application.
+ * Service Provider will listen for service request that is requested by the Service Requester Application.
  * If the service request is valid it will invoke the service that has been registered with the
  * IPSI library with ipsiRegisterFunction() by the Service provider application.
  *
