@@ -128,8 +128,8 @@ static int isCaller(char *connectionType){
  **/
 int ipsiRegisterFunction(void (*funPtr)(), char *methodName){
 	if( NULL == methodName || NULL == funPtr){
-			IPSI_LOG ("[IPSI] Invalid arguments, FAILED to update DataBase");
-			return FAILURE;
+		IPSI_LOG ("[IPSI] Invalid arguments, FAILED to update DataBase");
+		return FAILURE;
 	}
 	strcpy(methodNameArry[indexCounter],methodName);
 	funPtrArry[indexCounter] = funPtr;
