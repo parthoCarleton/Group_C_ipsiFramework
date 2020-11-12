@@ -127,8 +127,15 @@ static int isCaller(char *connectionType){
  * @return FAILURE: The function call was unable to register the function with IPSI library
  **/
 int ipsiRegisterFunction(void (*funPtr)(), char *methodName){
-
+	if( NULL == methodName || NULL == funPtr){
+		IPSI_LOG ("[IPSI] Invalid arguments, FAILED to update DataBase");
+		return FAILURE;
+	}
+	strcpy(methodNameArry[indexCounter],methodName);
+	funPtrArry[indexCounter] = funPtr;
+	indexCounter++;
 	return SUCCESS;
+
 }
 
 
