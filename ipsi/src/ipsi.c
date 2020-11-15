@@ -95,6 +95,13 @@ static int applicationRole= IPSI_NONE;
  */
 static int isServer(char *connectionType){
 
+	if(NULL == connectionType)
+		return FAILURE;
+	char serverType[10] = "Server";
+	if(!(strcmp(connectionType,serverType))){
+		IPSI_LOG("[IPSI] Connection Type is Server\n");
+		return SUCCESS;
+	}
 	return FAILURE;
 }
 
