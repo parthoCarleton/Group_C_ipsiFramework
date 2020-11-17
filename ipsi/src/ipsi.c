@@ -190,7 +190,22 @@ static int buildConnectionName(char *appName)
  * @return FAILURE: Cannot be able to bind connection name with connection type as per DBUS specification
  */
 static int initConnectionName(char *appName,char *connectionType){
-
+	if(isServer(connectionType)){
+		if (SUCCESS == buildConnectionName(appName)){
+			applicationRole = IPSI_SERVER;
+			return SUCCESS;
+		}
+		else
+			return FAILURE;
+	}
+	else if(isCaller(connectionType)){
+		if(SUCCESS == buildConnectionName(appName)){
+			applicationRole = IPSI_CALLER;
+			return SUCCESS;
+		}
+		else
+			return FAILURE;
+	}
 	return FAILURE;
 }
 
