@@ -115,6 +115,14 @@ static int isServer(char *connectionType){
  * @return FAILURE: The application is not a "Caller" Type
  */
 static int isCaller(char *connectionType){
+	if(NULL == connectionType)
+		return FAILURE;
+
+	char callerType[10] = "Caller";
+	if(!(strcmp(connectionType,callerType))){
+		IPSI_LOG("[IPSI] Connection Type is Caller\n");
+		return SUCCESS;
+	}
 
 	return FAILURE;
 }
