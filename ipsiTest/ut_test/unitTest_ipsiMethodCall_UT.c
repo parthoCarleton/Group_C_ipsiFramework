@@ -15,8 +15,9 @@
  * Expected Behavior: the function return SUCCESS as it was able to place request on
  * dbus session bus, dbus_connection_send was able to send the request on dbus channel
  */
-static void test_ipsiMethoCall_PASS(){
+static void test_ipsiMethodCall_PASS(){
 
+	ipsiState = IPSI_GOOD_STATE; // ipsiConnection was executed successful
 	UT_ASSERT(SUCCESS == ipsiMethodCall("Dummy","Play"));
 }
 
@@ -27,7 +28,8 @@ static void test_ipsiMethoCall_PASS(){
  * Expected Behavior: the function return Failure as it was not able to place request on
  * dbus session bus and dbus_connection_send fails to send request.
  */
-static void test_ipsiMethoCall_SENDFAIL(){
+static void test_ipsiMethodCall_SENDFAIL(){
+	ipsiState = IPSI_GOOD_STATE; // ipsiConnection was executed successful
 	conditionCASE = DBUS_CONNECTION_SEND_FAIL;
 	UT_ASSERT(FAILURE == ipsiMethodCall("Dummy","Play"));
 }
@@ -38,18 +40,28 @@ static void test_ipsiMethoCall_SENDFAIL(){
  * Expected Behavior: the function return Failure as it failed to create valid connection name
  * in order to send request on dbus channel.
  */
-static void test_ipsiMethoCall_appName_NULL(){
+static void test_ipsiMethodCall_appName_NULL(){
 
+	ipsiState = IPSI_GOOD_STATE; // ipsiConnection was executed successful
 	UT_ASSERT(FAILURE == ipsiMethodCall(NULL,"Play"));
+}
+
+/*
+ * To perform unit Testing on ipsiMethodCall when ipsiConnectionType has set BAD state flag
+ */
+static void test_ipsiMethodCall_ipsiCOnectionType_Fail(){
+	ipsiState = IPSI_BAD_STATE; // ipsiConnection was executed successful
+	UT_ASSERT(FAILURE == ipsiMethodCall("Server","Play"));
 }
 
 /** Unit Testing on ipsiMethodCall Start Here */
 int main()
 {
 	UT_START
-	test_ipsiMethoCall_PASS();
-	test_ipsiMethoCall_SENDFAIL();
-	test_ipsiMethoCall_appName_NULL();
+	test_ipsiMethodCall_PASS();
+	test_ipsiMethodCall_SENDFAIL();
+	test_ipsiMethodCall_appName_NULL();
+	test_ipsiMethodCall_ipsiCOnectionType_Fail();
 	UT_STOP
 
 }
