@@ -32,6 +32,7 @@ void dummyFunction (){
  */
 static void test_ipsiListen_PASS(){
 
+	ipsiState = IPSI_GOOD_STATE;
 	ipsiRegisterFunction (dummyFunction,"dummy");
 	UT_ASSERT(SUCCESS == ipsiListen());
 	UT_ASSERT(DUMMY_FUNCTION_CALLED == callFALG);
@@ -51,6 +52,7 @@ static void test_ipsiListen_PASS(){
  */
 static void test_ipsiListen_NoMSG(){
 
+	ipsiState = IPSI_GOOD_STATE;
 	conditionCASE = DBUS_LISTEN_NOMSG_FAULT;
 	ipsiRegisterFunction (dummyFunction,"dummy");
 	UT_ASSERT(FAILURE == ipsiListen());
@@ -68,6 +70,7 @@ static void test_ipsiListen_ipsiClose(){
 	applicationRole = IPSI_SERVER;
 	cleanupFlag = IPSI_CLEAN_UP_SET;
 	ipsiClose();
+	UT_ASSERT(ipsiListenFlag == STOP_IPSI_LISTEN);
 }
 
 /**
@@ -81,6 +84,15 @@ static void test_ipsiListen_ipsiClose_differntApplication(){
 	applicationRole = IPSI_CALLER;
 	cleanupFlag = IPSI_CLEAN_UP_SET;
 	ipsiClose();
+	UT_ASSERT(ipsiListenFlag == STOP_IPSI_LISTEN);
+}
+
+/**
+ * To perform unit testing on ipsiListen , when ipsiConnectionType has set BAD state flag
+ */
+static void test_ipsiListen_ipsiConnectionType_fail(){
+	ipsiState = IPSI_BAD_STATE;
+	UT_ASSERT(FAILURE == ipsiListen());
 }
 
 
@@ -92,6 +104,7 @@ int main()
 	test_ipsiListen_NoMSG();
 	test_ipsiListen_ipsiClose();
 	test_ipsiListen_ipsiClose_differntApplication();
+	test_ipsiListen_ipsiConnectionType_fail();
 	UT_STOP
 
 }

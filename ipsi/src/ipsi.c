@@ -37,6 +37,8 @@
 #define IPSI_NONE 4   				/** No Application has been registered with IPSI */
 #define IPSI_SERVER 5 				/** To identify the application registered with IPSI is a "Server" */
 #define IPSI_CALLER 6 				/** To identify the application registered with IPSI is a "Caller" */
+#define IPSI_GOOD_STATE	796			/** To state that IPSI library has no flaws in its operation */
+#define IPSI_BAD_STATE	795			/** To state that IPSI library has encountered flaws in its operation */
 
 #ifdef IPSI_NOLOG					/** Deactivate IPSI library Logging */
 #define IPSI_LOG(...)
@@ -55,6 +57,9 @@ DBusMessage* msg;
 DBusConnection* conn;
 /** Dbus Object representing an exception */
 DBusError err;
+
+/** IPSI Internal State **/
+int ipsiState = IPSI_BAD_STATE;
 
 /** IPSI common return VALUE **/
 int ret = FAILURE ;
@@ -236,10 +241,12 @@ int ipsiConnectionType(char *appName, char *connectionType){
 	if (dbus_error_is_set(&err)) {
 		IPSI_LOG("[IPSI] Connection Error (%s)\n", err.message);
 		dbus_error_free(&err);
+		ipsiState =  IPSI_BAD_STATE;
 		return FAILURE;
 	}
 	if (NULL == conn) {
 		IPSI_LOG("[IPSI] Connection Null\n");
+		ipsiState =  IPSI_BAD_STATE;
 		return FAILURE;
 	}
 
@@ -247,14 +254,16 @@ int ipsiConnectionType(char *appName, char *connectionType){
 	if (dbus_error_is_set(&err)) {
 		IPSI_LOG("[IPSI] Name Error (%s)\n", err.message);
 		dbus_error_free(&err);
+		ipsiState =  IPSI_BAD_STATE;
 		return FAILURE;
 	}
 
 	if (DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER != ret) {
 		IPSI_LOG("[IPSI] Not Primary Owner (%d)\n", ret);
+		ipsiState =  IPSI_BAD_STATE;
 		return FAILURE;
 	}
-
+	ipsiState =  IPSI_GOOD_STATE;
 	return SUCCESS;
 
 }
@@ -313,6 +322,12 @@ int ipsiMethodCall(char *appName,char* methodName)
 {
 	char appNameURL [100] = {};
 	char buffChar [100] = {};
+
+	if(IPSI_BAD_STATE == ipsiState){
+		IPSI_LOG ("[IPSI] ipsiMethodCall() failed because ipsiConnectionType() was not successful executed \n");
+		return FAILURE;
+	}
+
 	if (FAILURE == buildConnectionName(appName)){
 		IPSI_LOG ("[IPSI] Invalid Service Provider Name \n");
 		return FAILURE;
@@ -351,6 +366,11 @@ int ipsiMethodCall(char *appName,char* methodName)
  * @return  FAILURE: It was not able to exit Successfully as it was not able to able to exit from system's IPC properly
  **/
 int ipsiListen(){
+
+	if(IPSI_BAD_STATE == ipsiState){
+		IPSI_LOG ("[IPSI] ipsiListen() failed because ipsiConnectionType() was not successful executed \n");
+		return FAILURE;
+	}
 
 	IPSI_LOG("[IPSI] Listening for method calls\n");
 	while (!ipsiListenFlag) {

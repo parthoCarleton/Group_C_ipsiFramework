@@ -49,5 +49,8 @@ echo "*********************************************************"
 echo "**Code Coverage END**"
 echo "*********************************************************"
 echo "*********************************************************"
-echo "**UT completed , See the coverage data in report folder**"
+echo "**Unit Testing completed See the coverage data in report/ folder**"
+echo "Opening Coverage report in Firefox Browser...............!"
+sleep 2
+firefox report/src/index.html &
 echo "*********************************************************"
