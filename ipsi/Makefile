@@ -14,7 +14,7 @@ IPSI_INCLUDE_DIR = -I/usr/include/dbus-1.0 \
 
 DBUG_FLAG = -g
 
-CFLAGS = -c -Wall -Wextra  -fpic
+CFLAGS = -c -Wall -Wextra -Werror -fpic
 
 CXX = gcc
 
