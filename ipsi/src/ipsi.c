@@ -41,7 +41,7 @@
 #define IPSI_LOG(...) printf(__VA_ARGS__) /** Activate IPSI library Logging */
 #endif
 
-#include "ipsi.hpp"
+#include "ipsi.h"
 
 /* Global Variable Declaration */
 /*********************************/
