@@ -1,7 +1,7 @@
 /**
  * @file unitTest_ipsiListen_UT.c
  *
- * Description: To perform Unit Testing on ipsiListen and ipsiClose.
+ * Description: To perform Unit Testing on ipsi_listen and ipsi_close.
  */
 
 #include "UT_IPSI_UT.hpp"
@@ -10,21 +10,21 @@
 #define DUMMY_FUNCTION_CALLED 100
 #define DUMMY_FUNCTION_NOT_CALLED 101
 
-static int callFALG = DUMMY_FUNCTION_NOT_CALLED;
+static int call_flag = DUMMY_FUNCTION_NOT_CALLED;
 
 /**
  * Dummy functions
  */
 void dummyFunction (){
 
-	ipsiListenFlag = STOP_IPSI_LISTEN;
-	callFALG = DUMMY_FUNCTION_CALLED;
+	ipsi_listen_flag = STOP_IPSI_LISTEN;
+	call_flag = DUMMY_FUNCTION_CALLED;
 }
 
 /**
- * To perform unit testing on ipsiListen when dbus_connection_pop_msg send valid Dbus message to invoke
+ * To perform unit testing on ipsi_listen when dbus_connection_pop_msg send valid Dbus message to invoke
  * dummyFunction by ipisListen function
- * dumyFunction simulate role of closing dbus connection so that ipsiListen should stop listening for other request after
+ * dumyFunction simulate role of closing dbus connection so that ipsi_listen should stop listening for other request after
  * this call.
  * @note The above scenario  will be a multiThreaded scenario
  *
@@ -32,71 +32,71 @@ void dummyFunction (){
  */
 static void test_ipsiListen_PASS(){
 
-	ipsiState = IPSI_GOOD_STATE;
-	ipsiRegisterFunction (dummyFunction,"dummy");
-	UT_ASSERT(SUCCESS == ipsiListen());
-	UT_ASSERT(DUMMY_FUNCTION_CALLED == callFALG);
+	ipsi_state = IPSI_GOOD_STATE;
+	ipsi_register_function (dummyFunction,"dummy");
+	UT_ASSERT(SUCCESS == ipsi_listen());
+	UT_ASSERT(DUMMY_FUNCTION_CALLED == call_flag);
 
-	ipsiListenFlag = START_IPSI_LISTEN; // Reset
-	callFALG = DUMMY_FUNCTION_NOT_CALLED;
+	ipsi_listen_flag = START_IPSI_LISTEN; // Reset
+	call_flag = DUMMY_FUNCTION_NOT_CALLED;
 }
 
 /**
- * To perform unit testing on ipsiListen when dbus_connection_pop_msg sends Null Message
+ * To perform unit testing on ipsi_listen when dbus_connection_pop_msg sends Null Message
  *
- * @note: as ipsiListen is a blocking function it was necessary to create internal fault in the
+ * @note: as ipsi_listen is a blocking function it was necessary to create internal fault in the
  * program to cover the line of the code, hence this is an unexpected case to occur.
  *
- * ipsiListen continue to listen for valid message from dbus until any internal fault stops ipsiListen to exit
+ * ipsi_listen continue to listen for valid message from dbus until any internal fault stops ipsiListen to exit
  * and return.
  */
 static void test_ipsiListen_NoMSG(){
 
-	ipsiState = IPSI_GOOD_STATE;
+	ipsi_state = IPSI_GOOD_STATE;
 	conditionCASE = DBUS_LISTEN_NOMSG_FAULT;
-	ipsiRegisterFunction (dummyFunction,"dummy");
-	UT_ASSERT(FAILURE == ipsiListen());
+	ipsi_register_function (dummyFunction,"dummy");
+	UT_ASSERT(FAILURE == ipsi_listen());
 
 }
 
 /**
- * To perform unit testing on ipsiClose if Server calls.
+ * To perform unit testing on ipsi_close if Server calls.
  *
- * @note: ipsiClose should be called by Server application Only to stop listening for any service request
+ * @note: ipsi_close should be called by Server application Only to stop listening for any service request
  *
  */
 static void test_ipsiListen_ipsiClose(){
 
-	applicationRole = IPSI_SERVER;
-	cleanupFlag = IPSI_CLEAN_UP_SET;
-	ipsiClose();
-	UT_ASSERT(ipsiListenFlag == STOP_IPSI_LISTEN);
+	application_role = IPSI_SERVER;
+	cleanup_flag = IPSI_CLEAN_UP_SET;
+	ipsi_close();
+	UT_ASSERT(ipsi_listen_flag == STOP_IPSI_LISTEN);
 }
 
 /**
- * To perform unit testing on ipsiClose if called by other application.
+ * To perform unit testing on ipsi_close if called by other application.
  *
- * @note: ipsiClose should be called by Server application Only to stop listening for any service request
+ * @note: ipsi_close should be called by Server application Only to stop listening for any service request
  *
  */
 static void test_ipsiListen_ipsiClose_differntApplication(){
 
-	applicationRole = IPSI_CALLER;
-	cleanupFlag = IPSI_CLEAN_UP_SET;
-	ipsiClose();
-	UT_ASSERT(ipsiListenFlag == STOP_IPSI_LISTEN);
+	application_role = IPSI_CALLER;
+	cleanup_flag = IPSI_CLEAN_UP_SET;
+	ipsi_close();
+	UT_ASSERT(ipsi_listen_flag == STOP_IPSI_LISTEN);
 }
 
 /**
- * To perform unit testing on ipsiListen , when ipsiConnectionType has set BAD state flag
+ * To perform unit testing on ipsi_listen , when ipsiConnectionType has set BAD state flag
  */
 static void test_ipsiListen_ipsiConnectionType_fail(){
-	ipsiState = IPSI_BAD_STATE;
-	UT_ASSERT(FAILURE == ipsiListen());
+	ipsi_state = IPSI_BAD_STATE;
+	UT_ASSERT(FAILURE == ipsi_listen());
 }
 
 
-/** Unit Testing on ipsiListen and ipsiClose Start Here */
+/** Unit Testing on ipsi_listen and ipsi_close Start Here */
 int main()
 {
 	UT_START

@@ -82,7 +82,7 @@ dbus_bool_t 	dbus_connection_read_write (DBusConnection *connection, int timeout
 DBusMessage * 	dbus_connection_pop_message (DBusConnection *connection){
 
 	if (DBUS_LISTEN_NOMSG_FAULT == conditionCASE){
-		ipsiListenFlag = DBUS_LISTEN_NOMSG_FAULT;
+		ipsi_listen_flag = DBUS_LISTEN_NOMSG_FAULT;
 		return NULL;
 	}
 

@@ -1,7 +1,7 @@
 /**
  * @file unitTest_isCaller_UT.c
  *
- * Description: To perform Unit Testing on isCaller .
+ * Description: To perform Unit Testing on is_caller .
  */
 
 #include "UT_IPSI_UT.hpp"
@@ -9,41 +9,41 @@
 #include "stub_UT.c"
 
 /**
- * To perform unit testing on isCaller when the connection type is "Caller"
+ * To perform unit testing on is_caller when the connection type is "Caller"
  *
  * Expected Behavior:  function should return Success indicating that
  * the connection type was "Caller"
  */
 static void test_isCaller_Pass(){
 
-	UT_ASSERT(SUCCESS == (isCaller("Caller"))); // Check +ive condition
+	UT_ASSERT(SUCCESS == (is_caller("Caller"))); // Check +ive condition
 
 }
 
 /**
- * To perform unit testing on isCaller when the connection type as not "Caller" type
+ * To perform unit testing on is_caller when the connection type as not "Caller" type
  *
  * Expected Behavior:  function should return FALIURE indicating that
  * the connection type was not "Caller"
  */
 static void test_isCaller_Fail(){
 
-	UT_ASSERT(FAILURE == (isCaller("abc"))); // Check -ive condition
+	UT_ASSERT(FAILURE == (is_caller("abc"))); // Check -ive condition
 
 }
 
 /**
- * To perform unit testing on isCaller when the connection type is NULL
+ * To perform unit testing on is_caller when the connection type is NULL
  *
  * Expected Behavior: function should return FALIURE indicating that
  * the connection type was not valid and NULL.
  */
 static void test_isCaller_NULL(){
 
-	UT_ASSERT(FAILURE == (isCaller(NULL)));
+	UT_ASSERT(FAILURE == (is_caller(NULL)));
 }
 
-/** Unit Testing for isCaller Starts */
+/** Unit Testing for is_caller Starts */
 int main()
 {
 	UT_START
