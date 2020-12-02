@@ -4,7 +4,8 @@ IPSI framework is a library that allows multiple applications to connect and per
 **libipsi.so** - is our product that can be found in ipsi/bin
 > Note: Please see [Building libipsi.so](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference#build-shared-library--libipsiso) manual to obtain libipsi.so
 ## Dependencies
-Our product exclusively provide functionality under Operating System with Linux Kernel environment that has Dbus component. 
+Our product exclusively provide functionality under Operating System with Linux Kernel environment that has Dbus component.
+For more information refer [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference) manual.
 ## Authors
 * Partho Ghosal -     partho.ghosal@cmail.carleton.ca
 * Ashwini Upasani -   ashwini.upasani@cmail.carleton.ca
