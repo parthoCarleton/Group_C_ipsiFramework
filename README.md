@@ -99,8 +99,8 @@ It introduce's to Inter process service interface -IPSI framework and its detail
 It introduce's to usability and services that are being offered by the IPSI library intended for Linux developer, aimed to use inter-process communication feature for two-way application interaction.\
 [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference)
 
-# License
+## License
 This project is licensed under the GPL 3.0 License - see the LICENSE.md file for details
 
-# Acknowledgements
+## Acknowledgements
 This project was developed under Dr. Cristina Ruiz Martin's guidance
