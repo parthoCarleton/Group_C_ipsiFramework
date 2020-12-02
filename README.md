@@ -86,6 +86,7 @@ Project file Structure description
 │       ├── unitTest_isServer_UT.c            -> Unit Test case strategy 6
 │       └── UT_IPSI_UT.hpp
 ├── README.md                               -> Contains the Project Description 
+├── LICENSE.md                              -> Contains the License information. 
 └── runIPSI.sh                              -> Greeting Page- single point to access all the project features.
 
 ```
@@ -100,7 +101,10 @@ It introduce's to usability and services that are being offered by the IPSI libr
 [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference)
 
 ## License
-This project is licensed under the GPL 3.0 License - see the LICENSE.md file for details
+This project is licensed under the GPL 3.0 License - see the LICENSE.md file for details.
+
+## Organization
+Carleton University
 
 ## Acknowledgements
-This project was developed under Dr. Cristina Ruiz Martin's guidance
+This project was developed under Dr. Cristina Ruiz Martin's guidance.
