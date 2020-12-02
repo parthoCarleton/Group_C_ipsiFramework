@@ -2,6 +2,7 @@
 IPSI framework is a library that allows multiple applications to connect and perform a service request. This framework abstracts the complex low-level system’s communication protocol by revealing a simplified service interface that can be used by the applications to invoke service requests to other applications.
 ## Product
 **libipsi.so** - is our product that can be found in ipsi/bin
+> Note: Please see [Building libipsi.so](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference#build-shared-library--libipsiso) manual to obtain libipsi.so
 ## Dependencies
 Our product exclusively provide functionality under Operating System with Linux Kernel environment that has Dbus component. 
 ## Authors
