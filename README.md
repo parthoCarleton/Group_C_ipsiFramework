@@ -2,6 +2,11 @@
 IPSI framework is a library that allows multiple applications to connect and perform a service request. This framework abstracts the complex low-level system’s communication protocol by revealing a simplified service interface that can be used by the applications to invoke service requests to other applications.
 ## Product
 **libipsi.so** - is our product that can be found in ipsi/bin
+## Authors
+* Partho Ghosal -     partho.ghosal@cmail.carleton.ca
+* Ashwini Upasani -   ashwini.upasani@cmail.carleton.ca
+* Deepti Guruprasad-  deeptiguruprasad@cmail.carleton.ca
+* Rajdeep Virdi -     rajdeepvirdi@cmail.carleton.ca
 
 ## Usability
 Clone this project
