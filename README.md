@@ -2,6 +2,8 @@
 IPSI framework is a library that allows multiple applications to connect and perform a service request. This framework abstracts the complex low-level system’s communication protocol by revealing a simplified service interface that can be used by the applications to invoke service requests to other applications.
 ## Product
 **libipsi.so** - is our product that can be found in ipsi/bin
+## Dependencies
+Our product exclusively provide functionality under Operating System with Linux Kernel environment that has Dbus component. 
 ## Authors
 * Partho Ghosal -     partho.ghosal@cmail.carleton.ca
 * Ashwini Upasani -   ashwini.upasani@cmail.carleton.ca
@@ -9,11 +11,13 @@ IPSI framework is a library that allows multiple applications to connect and per
 * Rajdeep Virdi -     rajdeepvirdi@cmail.carleton.ca
 
 ## Usability
-Clone this project
+It is recommended for the new user to run the usability steps in **freshly installed Ubuntu 20.04 LTS system.**
+
+Clone this project using command
 ```bash
 git clone https://github.com/parthoCarleton/Group_C_ipsiFramework.git
 ```
-To familiarize with what this project has to offer follow below steps 
+To familiarize with what this project has to offer follow the below steps 
 ```bash
 cd Group_C_ipsiFramework
 sh runIPSI.sh
