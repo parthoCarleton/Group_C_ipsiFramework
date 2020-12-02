@@ -4,8 +4,8 @@ IPSI framework is a library that allows multiple applications to connect and per
 **libipsi.so** - is our product that can be found in ipsi/bin
 > Note: Please see [Building libipsi.so](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference#build-shared-library--libipsiso) manual to obtain libipsi.so
 ## Dependencies
-Our product exclusively provide functionality under Operating System with Linux Kernel environment that has Dbus component.
-For more information refer [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference) manual.
+Our product exclusively provides functionality under Operating System with Linux Kernel environment that has Dbus component.
+For more information refer to [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference) manual.
 ## Authors
 * Partho Ghosal -     parthoghosal@cmail.carleton.ca
 * Ashwini Upasani -   ashwiniupasani@cmail.carleton.ca
@@ -33,7 +33,7 @@ Project file Structure description
 │   │   │   └── Controller
 │   │   ├── inc                     -> Controller Application include folder
 │   │   │   └── controllerApp.hpp   -> Controller Application header file
-│   │   ├── Makefile                -> Makefile to build Contorller Application
+│   │   ├── Makefile                -> Makefile to build Controller Application
 │   │   ├── run.sh                  -> Script to run Controller Application
 │   │   └── src                     -> Source folder 
 │   │       └── controllerApp.cpp   -> C++ Controller application source file 
@@ -85,19 +85,19 @@ Project file Structure description
 │       ├── unitTest_isCaller_UT.c            -> Unit Test case strategy 5
 │       ├── unitTest_isServer_UT.c            -> Unit Test case strategy 6
 │       └── UT_IPSI_UT.hpp
-├── README.md                               -> Contains the Project Description 
+├── README.md                               -> Contains the Project Description and Folder Hierarchy
 ├── LICENSE.md                              -> Contains the License information. 
-└── runIPSI.sh                              -> Greeting Page- single point to access all the project features.
+└── runIPSI.sh                              -> Greeting Page- single point of access to all the project features.
 
 ```
 ## Manuals
-To know more about the IPSI framework refer the below links:
+To know more about the IPSI framework refer to the below links:
 ### User Reference :
-It introduce's to Inter process service interface -IPSI framework and its detail description.\
+It introduces the Inter process service interface -IPSI framework and its detail description.\
 [User-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/User-Reference)
 
 ### Developer Reference :
-It introduce's to usability and services that are being offered by the IPSI library intended for Linux developer, aimed to use inter-process communication feature for two-way application interaction.\
+It introduces the usability and services that are being offered by the IPSI library intended for Linux developer, aimed to use inter-process communication feature for two-way application interaction.\
 [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference)
 
 ## License
