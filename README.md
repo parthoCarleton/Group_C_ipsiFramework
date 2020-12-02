@@ -58,6 +58,7 @@ Project file Structure description
 │       ├── run.sh                  -> Script to run Service 1 Application
 │       └── src                     -> Source folder
 │           └── service2App.cpp     -> C++ Service 2 Application source file
+├── doc                             -> Doxygen generated docs, Open index.html in any browser.
 ├── ipsi                            -> Inter Process Service Interface- IPSI framework folder
 │   ├── bin                         -> Shared library folder
 │   │   └── libipsi.so              -> IPSI product
