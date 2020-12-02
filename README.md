@@ -7,8 +7,8 @@ IPSI framework is a library that allows multiple applications to connect and per
 Our product exclusively provide functionality under Operating System with Linux Kernel environment that has Dbus component.
 For more information refer [Developer-Reference](https://github.com/parthoCarleton/Group_C_ipsiFramework/wiki/Developer-Reference) manual.
 ## Authors
-* Partho Ghosal -     partho.ghosal@cmail.carleton.ca
-* Ashwini Upasani -   ashwini.upasani@cmail.carleton.ca
+* Partho Ghosal -     parthoghosal@cmail.carleton.ca
+* Ashwini Upasani -   ashwiniupasani@cmail.carleton.ca
 * Deepti Guruprasad-  deeptiguruprasad@cmail.carleton.ca
 * Rajdeep Virdi -     rajdeepvirdi@cmail.carleton.ca
 
