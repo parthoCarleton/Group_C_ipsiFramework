@@ -12,10 +12,10 @@ printf "\n"
 echo "***************************************************************"
 echo "***************************************************************"
 echo " You can choose from the following option:"
-echo " 0. Build ipsi Shared library"
-echo " 1. Demonstate capabilites of IPSI framework"
+echo " 0. Build IPSI Shared library -libipsi.so"
+echo " 1. Demonstrate the capabilities of IPSI framework"
 echo " 2. Run Unit Test on IPSI framework"
-echo " 3. Setup IPSI Framework envrionment in Your machine"
+echo " 3. Setup IPSI Framework environment in Your machine"
 echo " Press any other Key to Exit from this Page "
 echo "***************************************************************"
 read option
@@ -24,7 +24,7 @@ case $option in
 
 	0)
 		echo "*You have Selected*"
-		echo " 0. Build ipsi Shared library"
+		echo " 0. Build IPSI Shared library -libipsi.so"
 		sleep 1
 		printf "\n"
 		echo "NOTE: You should have ran option 3 atleast once in your system"
@@ -50,7 +50,7 @@ case $option in
 
 	1)
 		echo "*You have Selected*"
-		echo " 1. Demonstate capabilites of IPSI framework"
+		echo " 1. Demonstrate the capabilities of IPSI frameworkk"
 		echo " NOTE: You should have minimum resolution of 1280x1024 resolution for Demo apps to run comfortably"	
 		sleep 1
 		printf "\n"
@@ -91,7 +91,7 @@ case $option in
 		;;
 	3)
 		echo "*You have Selcted*"
-		echo " 3. Setup IPSI envrionment in Your PC"
+		echo " 3. Setup IPSI environment in Your PC"
 		sleep 1
 		cd ipsiSetup
 		sh ipsiEnvSetup.sh
