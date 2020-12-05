@@ -3,7 +3,7 @@
 
 echo "******************************************************************************************"
 echo "----------------Make sure you have STABLE INTERNET CONNECTION--------------"
-echo "You are about to set Environment for IPIS framework Demo Apps +UT framework in your System"
+echo "You are about to set Environment for IPIS framework + Demo Apps + UT framework in your System"
 printf "\n"
 echo "NOTE: You should have administration privilages to download the packages"
 echo "******************************************************************************************"
@@ -27,6 +27,6 @@ echo "NOTE: Your machine has now required packages to run Demo + Unit Testing to
 echo "You are not required to re-Run this option Again"
 echo "If any packages failed to install then contact the Developers or try re-Running this option"
 printf "\n"
-echo "WARNING: If Demo or Unit Testing Framework fails to compile or Run , you might try to re-Run"
+echo "WARNING: If Demo or Unit Testing Framework fails to compile or execute , you might try to re-Run"
 echo "this option or contact the Developer"
 echo "***************************************************************************"
